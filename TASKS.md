@@ -38,8 +38,7 @@ After we introduce the above requests for our record store we need to do some er
       - `orders/:id` -> `PUT` an order
       - `orders/:id` -> `DELETE` an order 
 
-3. Once we make sure all the above work as they should and that our database is being updated correctly, please write a middleware function that will handle errors during the requests. Remember that by default a package called `http-errors` is already imported in our app.
-
+3. Once we make sure all the above work as they should and that our database is being updated correctly, please write a middleware function that will handle errors during the requests. 
 
 ## Task 02 - Middleware and CORS
 Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named `next`. There are a number of already made middleware functions we can use and we can also build our own custome middleware functions. You can already see that by default your express app is already using `morgan` and `express.json()` as it's middleware.
