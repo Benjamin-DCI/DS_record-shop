@@ -4,18 +4,18 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('data/db.json');
 const db = low(adapter);
-const { getRecords, getRecord, updateRecord, deleteRecord, addRecord } = require('../controllers/recordsController');
+const { getOrders, getOrder, updateOrder, deleteOrder, addOrder } = require('../controllers/ordersController');
 
 
 router.
     route('/').   
-    get(getRecords).
-    post(addRecord);
+    get(getOrders).
+    post(addOrder);
 
 router.
     route('/:id').   
-    get(getRecord).
-    delete(deleteRecord).
-    put(updateRecord);
+    get(getOrder).
+    delete(deleteOrder).
+    put(updateOrder);
 
 module.exports = router;
