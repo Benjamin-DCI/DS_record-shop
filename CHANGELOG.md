@@ -8,7 +8,7 @@ In this branch we expanded our records endpoints and we create new ones for  use
     - We created DELETE and PUT for the records model
     - We created GET, POST,`PUT and DELETE for our users model
     - We created GET, POST,`PUT and DELETE for our orders model
-    - We wrote a middleware function that performs basis error handling.
+    - We wrote a middleware function that performs basic error handling.
 
 
 ## Stage 2: Middleware and CORS
