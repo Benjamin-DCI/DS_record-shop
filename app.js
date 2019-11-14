@@ -1,44 +1,76 @@
-/** EXTERNAL DEPENDENCIES */
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+// External Dependencies
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
+const createError = require("http-errors");
+const mongoose = require("mongoose");
 
-/** ROUTERS */
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const recordsRouter = require('./routes/records');
-const { setCors } = require("./middleware/security");
+// Routers
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const recordsRouter = require("./routes/records");
+const { setCors } = require("./middleware/setCors");
 
-/** INIT */
+// Initialise
 const app = express();
 
-/** LOGGING */
-app.use(logger('dev'));
+// Logging
+app.use(logger("dev"));
 
+// CONNECT TO DB
 
-/** SETTING UP LOWDB */
-const adapter = new FileSync('data/db.json');
+mongoose.connect("mongodb://localhost:27017/record-shop", {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on("error", console.error);
+mongoose.connection.on("open", () => {
+  console.log("Database connection established...");
+});
+
+// Setting up LowDB
+const adapter = new FileSync("data/db.json");
 const db = low(adapter);
-db.defaults({ records:[] }).write();
+db.defaults({ records: [] }).write();
 
-
-/** REQUEST PARSERS */
+// Request Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(setCors);
 
-/** STATIC FILES*/
-app.use(express.static(path.join(__dirname, 'public')));
+// Static Files
+app.use(express.static(path.join(__dirname, "public")));
 
+// Routes
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/records", recordsRouter);
 
-/** ROUTES */
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/records', recordsRouter);
+// ERROR HANDLING
+// app.use((req, res, next) => {
+// 	const error = new Error("Where do you think you're going??");
+// 	error.status = 404;
+// 	next(error);
+// });
 
-/** EXPORT PATH */
+app.use((req, res, next) => {
+  return next(createError(400, "Looks like you are lost"));
+  next();
+});
+
+app.use((err, req, res, next) => {
+  res.send({
+    error: {
+      message: err.message
+    }
+  });
+});
+
+// Path
 module.exports = app;
