@@ -8,7 +8,6 @@ In this branch we introduced Mongoose and we created our first models. We then c
 
     - We established our database connection in app.js
     - We create our models for our records, users and orders.
-    - We set up a virtual for our user model.
     - We wrote a script that will seed the database with some fake users if run.
     - We wrote a script that will purge users if run.
 
