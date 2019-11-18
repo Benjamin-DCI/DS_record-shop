@@ -1,4 +1,4 @@
-var faker = require("faker");
+let faker = require("faker");
 const mongoose = require("mongoose");
 const User = require("../models/User");
 
