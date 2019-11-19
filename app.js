@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const recordsRouter = require("./routes/records");
+const ordersRouter = require("./routes/orders");
 const { setCors } = require("./middleware/setCors");
 
 // Initialise
@@ -51,6 +52,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/records", recordsRouter);
+app.use("/orders", ordersRouter);
 
 // ERROR HANDLING
 // app.use((req, res, next) => {
