@@ -4,7 +4,7 @@ This file lists the changes that need to be made in each stage. It is ordered in
 
 ## Task 05 - Mongoose and Controllers
 
-In this task will update our controllers to start communicating with our database. `Lowdb` is no longer needed, so we will get rid of it's structure. We will dive into Mongoose API and introduce methods that establish communication with our database. Using Mongoose we will read data from the database, insert new records and manipulate already stored data. We will also introduce `Robo 3T`, a MongoDB GUI that will help us follow what is happening in our database whenever we update something.
+In this task will update our controllers to start communicating with our database. `Lowdb` is no longer needed, so we will get rid of it's structure. We will dive into Mongoose API and introduce methods that establish communication with our database. Using Mongoose we will read data from the database, insert new records and manipulate already stored data. 
 
 **TODO**:
 
