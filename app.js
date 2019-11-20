@@ -3,8 +3,6 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
 const createError = require("http-errors");
 const mongoose = require("mongoose");
 
@@ -34,11 +32,6 @@ mongoose.connection.on("open", () => {
   console.log("Database connection established...");
 });
 
-// Setting up LowDB
-const adapter = new FileSync("data/db.json");
-const db = low(adapter);
-db.defaults({ records: [] }).write();
-
 // Request Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -55,12 +48,6 @@ app.use("/records", recordsRouter);
 app.use("/orders", ordersRouter);
 
 // ERROR HANDLING
-// app.use((req, res, next) => {
-// 	const error = new Error("Where do you think you're going??");
-// 	error.status = 404;
-// 	next(error);
-// });
-
 app.use((req, res, next) => {
   return next(createError(400, "Looks like you are lost"));
   next();
