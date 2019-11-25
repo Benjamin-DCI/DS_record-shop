@@ -24,7 +24,7 @@ const User = require("../models/User");
     console.error(err);
   }
 
-  const userPromises = Array(500)
+  const userPromises = Array(5)
     .fill(null)
     .map(() => {
       const user = new User({

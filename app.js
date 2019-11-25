@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const createError = require("http-errors");
 const mongoose = require("mongoose");
+const { userValidationRules, validate } = require("./validators/validator");
 
 // Routers
 const indexRouter = require("./routes/index");
@@ -43,14 +44,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/users", userValidationRules(), validate, usersRouter);
 app.use("/records", recordsRouter);
 app.use("/orders", ordersRouter);
 
 // ERROR HANDLING
 app.use((req, res, next) => {
   return next(createError(400, "Looks like you are lost"));
-  next();
 });
 
 app.use((err, req, res, next) => {

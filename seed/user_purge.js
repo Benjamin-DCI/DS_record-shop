@@ -4,7 +4,7 @@ const User = require("../models/User");
 
 console.log("I shall purge all users");
 
-(async function() {
+(async () => {
   /**CONNECT TO DB */
   mongoose.connect("mongodb://localhost:27017/record-shop", {
     useNewUrlParser: true,
@@ -13,7 +13,7 @@ console.log("I shall purge all users");
   });
 
   mongoose.connection.on("error", console.error);
-  mongoose.connection.on("open",() => {
+  mongoose.connection.on("open", () => {
     console.log("Database connection established...");
   });
 
