@@ -11,8 +11,6 @@ In this stage we added validation and sanitization on our user model using `expr
       for data validation and sanitization.
     - Once everythings worked as intented, we simplified our code by creating
       a validator middleware method.
-    - Then we made our code even more beautiful and dynamic and so 2019 by splitting
-      the validation rules into a seperate directory.
 
 ## Stage 5: Mongoose && Controllers
 
