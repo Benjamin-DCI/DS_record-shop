@@ -2,7 +2,7 @@
 
 This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.
 
-## Task 06 - Relations
+## Task 07- Relations
 
 Relations relation relations. The fact is that MongoDB is a NoSQL database. It means that it is non-relational, among other things. To implement a kind of relations between documents, we use references by IDs or embed documents directly. In the task we will update our code in order to create relations between our models. We can see that an order contains the id of a record but when we retreat an order we only see the id and not the data of the record as well. We will introduce one to ne and one to many relationships between our models and populate data when needed.
 
