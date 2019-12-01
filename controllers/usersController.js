@@ -6,8 +6,7 @@ exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find()
       .select("-password -__v")
-      .sort("lastName")
-      .skip(3);
+      .sort("lastName");
     res.status(200).send(users);
   } catch (e) {
     next(e);
@@ -55,21 +54,14 @@ exports.addUser = async (req, res, next) => {
     }
 
     const user = new User(req.body);
+    const token = user.generateAuthToken();
     await user.save();
-    res.status(200).send(user);
+    res
+      .status(200)
+      .header("x-auth", token)
+      .send(user);
   } catch (e) {
     next(e);
   }
 };
 
-// exports.authenticateUser = async (req, res, next) => {
-//   try {
-//     const token = req.header("x-auth");
-//     const user = await User.findByToken(token);
-//     if (!user) throw new createError.notFound();
-
-//     res.send(user);
-//   } catch (e) {
-//     next(e);
-//   }
-// };
