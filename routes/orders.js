@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../middleware/authenticator");
+const isAdmin = require("../middleware/rolesAuthenticator");
 
 const {
   getOrders,
@@ -11,7 +13,7 @@ const {
 
 router
   .route("/")
-  .get(auth, getOrders)
+  .get(auth, isAdmin, getOrders)
   .post(auth, addOrder);
 
 router

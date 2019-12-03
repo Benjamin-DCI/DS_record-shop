@@ -56,12 +56,33 @@ exports.addUser = async (req, res, next) => {
     const user = new User(req.body);
     const token = user.generateAuthToken();
     await user.save();
+    const data = user.getPublicFields();
     res
       .status(200)
       .header("x-auth", token)
-      .send(user);
+      .send(data);
   } catch (e) {
     next(e);
   }
 };
 
+exports.loginUser = async (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  try {
+    const user = await User.findOne({ email });
+    const valid = await user.checkPassword(password);
+    if (!valid) throw new createError.NotFound();
+
+    const token = user.generateAuthToken();
+    const data = user.getPublicFields();
+
+    res
+      .status(200)
+      .header("x-auth", token)
+      .send(data);
+  } catch (e) {
+    next(e);
+  }
+};
