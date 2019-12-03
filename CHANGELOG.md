@@ -2,12 +2,26 @@
 
 This changelog is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each change.
 
+## Stage 8: Authentication
+
+In this step we worked on authentication and we updated a lot of stuff. Let's go step by step.
+
+    -  We added a JWT whenever a user was created and we return the token in a header.
+    -  We set up a temp /me path for setting up an authenticator function what will let
+       requests pass only if the right token is send as a header.
+    -  We then moved the whole logic to a seperate middleware function and we used it
+       for all the endpoints we would like to be authenticated.
+    -  We added password hashing so our passwords our now safely stored.
+    -  We added a login endpoint for the users to log in.
+    -  We added user roles and an authenticator for the paths that
+       should only be accessible from an Admin user.
+
 ## Stage 7: Relations
 
 Here we introduces realtions between our data
 
     - We created a new schema for address
-    - We embedded the address schema in our user schema
+    - We embeded the address schema in our user schema
     - We created a 1-to-many relation between orders and records.
     - We populated the above relation
     - We cleaned out our data by returning only what we needed using select.
