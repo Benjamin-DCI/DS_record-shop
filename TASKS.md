@@ -2,7 +2,36 @@
 
 This file lists the changes that need to be made in each stage. It is ordered in reverse chronological order, meaning that the last changes made will always be on top of the file, so that readers will not have to scroll all the way down with each task added.
 
-## Task 07- Relations
+## Task 08 - Authentication
+
+Our app works well up until now but it's not secure at all at the moment. Anybody can delete another users account using their id, passwords are not hashed so they are easy to be compromised and there is no authentication taking place anywhere. We will set up a way to authenticate each call using Json Web Tokens, so each user can manage only information created by them. We will also introduce roles for our users. We will have an admin role and a client role and their priviledges should be like the following:
+
+**Admin Role**
+
+- Records
+  - POST/GET/PUT/DELETE.
+- Users
+  - POST/GET/PUT/DELETE.
+- Orders
+  - POST/GET/PUT/DELETE.
+
+**Client Role**
+
+- Records
+  - GET.
+- Users
+  - POST/GET/PUT/DELETE.
+- Orders
+  - POST/GET/PUT/DELETE.
+
+**TODO**
+
+1. Return a token everytime a user is created.
+2. Write a middleware to authenticate all endpoints of our app using the token above.
+3. Hash the password while user creation and login.
+4. Write a middleware that will validate users based on their roles.
+
+## Task 07 - Relations
 
 Relations relation relations. The fact is that MongoDB is a NoSQL database. It means that it is non-relational, among other things. To implement a kind of relations between documents, we use references by IDs or embed documents directly. In the task we will update our code in order to create relations between our models. We can see that an order contains the id of a record but when we retreat an order we only see the id and not the data of the record as well. We will introduce one to ne and one to many relationships between our models and populate data when needed.
 
