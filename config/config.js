@@ -11,7 +11,7 @@ const devConfig = {
 
 const prodConfig = {
   db:
-    "mongodb+srv://Benjamin:benjamin@record-shop-test-ejhsh.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://<username>:<password>@record-shop-test-ejhsh.mongodb.net/test?retryWrites=true&w=majority",
   jwt_key: "iamaverysecretkey"
 };
 
